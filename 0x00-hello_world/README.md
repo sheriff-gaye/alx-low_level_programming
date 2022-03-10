@@ -1,1 +1,1 @@
-This is the beginning of C language 
+First C codes with Holberton: compiling c program and hello world code
