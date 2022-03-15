@@ -1,20 +1,15 @@
-#include "holberton.h"
-
+#include "main.h"
 /**
- * print_alphabet - Entry point
- * Return:0
+ * print_alphabet - prints the english alphabet from a-z.
+ * Return: Nothing.
  */
-
 void print_alphabet(void)
 {
-	char c = 'a';
+	char c;
 
-	while (c <= 'z')
+	for (c = 'a'; c <= 'z'; c++)
 	{
 		_putchar(c);
-		c++;
-
 	}
 	_putchar('\n');
-
 }

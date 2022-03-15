@@ -1,14 +1,12 @@
-#include "holberton.h"
-
+#include "main.h"
 /**
- * _abs - return abs value
- * @n : number to check
- * Return:0 or 1
+ * _abs - calculate the absolute value of the number from zero.
+ * @i: the integer to be converted.
+ * Return: absolute value of the input number.
  */
-
-int _abs(int n)
+int _abs(int i)
 {
-
-return (n >= 0 ? n : n * -1);
-
+	if (i < 0)
+		i = i * -1;
+	return (i);
 }
