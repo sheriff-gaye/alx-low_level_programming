@@ -1,26 +1,83 @@
 #include <stdio.h>
-#include <math.h>
+#include "main.h"
 /**
- * main - prime numbers
+ * main - prints the biggest prime factor of a number.
  *
  * Return: Always 0.
  */
 int main(void)
 {
+	long int number;
 
-unsigned int long n = 612852475143, a = (int) sqrt(n);
+	number = 612852475143;
 
-while (1)
-{
-
-	if (n % a == 0)
+	if (isPrime(number) == 1)
 	{
-		printf("%lu \n", n / a);
-		break;
+		printf("%ld\n", number);
 	}
-	a--;
-
+	else
+	{
+		printf("%ld\n", biggestFactor(number));
+	}
+	return (0);
 }
+/**
+ * isPrime - analise if a number is prime or not
+ * @n: number to check
+ * Return: true if it is prime false if not
+ */
+int isPrime(long int n)
+{
+	int i;
 
-return (0);
+	if (n <= 1)
+	{
+		return (0);
+	}
+	else if (n == 2)
+	{
+		return (1);
+	}
+	else
+	{
+		for (i = 2; i < n; i++)
+		{
+			if (n % i == 0)
+			{
+				return (0);
+			}
+		}
+	return (1);
+	}
+}
+/**
+ * biggestFactor - returns the biggest prime factor of a number
+ * @a: number to check
+ * Return: biggest factor
+ */
+long int biggestFactor(long int a)
+{
+	long int i, factor;
+
+	factor = a;
+	for (i = 2; i <= factor; i++)
+	{
+		if (isPrime(factor) == 1)
+		{
+			break;
+		}
+		else
+		{
+			if ((factor % i == 0) && (isPrime(i) == 1))
+			{
+				factor = factor / i;
+				continue;
+			}
+			else
+			{
+				factor = factor;
+			}
+		}
+	}
+	return (factor);
 }
