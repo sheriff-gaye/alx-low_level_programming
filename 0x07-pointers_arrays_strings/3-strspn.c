@@ -1,31 +1,44 @@
 #include "main.h"
 
 /**
- * *_strspn - return the number of occurent of a string
- * @s: string to check
- * @accept: character to match
- * Return: int
- */
-
+ * _strspn - Locates a character in a string
+ * @s: This is the main C string to be scanned.
+ * @accept: This is the string containing the list of characters to match in s
+ * Return: return count
+ **/
 
 unsigned int _strspn(char *s, char *accept)
-{
-	int i, j, cmpt = 0;
 
-	for (i = 0; s[i] >= '\0'; i++)
+{
+	int i, j;
+	int count = 0;
+	char *str1, *str2;
+
+	str1 = s;
+	str2 = accept;
+
+	i = 0;
+	while (str1[i] != '\0') /*Declaring WHILE *s */
 	{
-		for (j = 0; accept[j] > '\0'; j++)
+		j = 0;
+		while (str2[j] != '\0') /*Declaring WHILE *accept*/
 		{
-			if (s[i] == accept[j])
+			if (str2[j] == str1[i]) /*Evaluate condition*/
 			{
-				cmpt++;
+				count++; /*count number*/
 				break;
 			}
+
+			j++;    /*add j+1*/
 		}
-		if (accept[j] == '\0')
+
+		if (s[i] != accept[j]) /*If aren't equals*/
 		{
 			break;
 		}
+
+		i++; /*add x+1*/
 	}
-	return (cmpt);
+
+	return (count); /*return the value of count*/
 }
