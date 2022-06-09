@@ -2,12 +2,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
 /**
  *main - check the code
  *
  *Return: Always EXIT_SUCCESS.
  */
-int main(void) {
+int main(void)
+{
 	dlistint_t * head;
 	head = NULL;
 	add_dnodeint_end(&head, 0);
