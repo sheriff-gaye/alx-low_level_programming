@@ -1,54 +1,32 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 #include "lists.h"
 
 /**
- *main - Generates and prints passwords for the crackme5 executable.
- *@argc: The number of arguments supplied to the program.
- *@argv: An array of pointers to the arguments.
+ *add_dnodeint - adds a new node at the beginning of a doubly linked list
+ *@head: double pointer to the list
+ *@n: data to insert in the new node
  *
- *Return: Always 0.
+ *Return: the address of the new element, or NULL if it failed
  */
-int main(int __attribute__((__unused__)) argc, char *argv[])
+dlistint_t* add_dnodeint(dlistint_t **head, const int n)
 {
-	char password[7], *codex;
-	int len = strlen(argv[1]), i, tmp;
+	dlistint_t * new;
 
-	codex = "A-CHRDw87lNS0E9B2TibgpnMVys5XzvtOGJcYLU+4mjW6fxqZeF3Qa1rPhdKIouk";
+	if (!head)
+		return (NULL);
 
-	tmp = (len ^ 59) &63;
-	password[0] = codex[tmp];
+	new = malloc(sizeof(dlistint_t));
+	if (!new)
+		return (NULL);
 
-	tmp = 0;
-	for (i = 0; i < len; i++)
-		tmp += argv[1][i];
-	password[1] = codex[(tmp ^ 79) &63];
+	new->n = n;
 
-	tmp = 1;
-	for (i = 0; i < len; i++)
-		tmp *= argv[1][i];
-	password[2] = codex[(tmp ^ 85) &63];
+	new->next = *head;
+	new->prev = NULL;
 
-	tmp = 0;
-	for (i = 0; i < len; i++)
-	{
-		if (argv[1][i] > tmp)
-			tmp = argv[1][i];
-	}
-	srand(tmp ^ 14);
-	password[3] = codex[rand() &63];
+	if (*head)
+		(*head)->prev = new;
 
-	tmp = 0;
-	for (i = 0; i < len; i++)
-		tmp += (argv[1][i] *argv[1][i]);
-	password[4] = codex[(tmp ^ 239) &63];
+	*head = new;
 
-	for (i = 0; i < argv[1][0]; i++)
-		tmp = rand();
-	password[5] = codex[(tmp ^ 229) &63];
-
-	password[6] = '\0';
-	printf("%s", password);
-	return (0);
+	return (new);
 }
